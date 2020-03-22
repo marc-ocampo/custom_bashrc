@@ -12,15 +12,23 @@ DIR_MOUNT=/mnt/hgfs/
 # Enables (1) and disables (0) debug logging
 DBG=0
 
+# Path for git master branch (if not 'master' as default)
+GMASTER=HEADS:refs/for/master
+
 ######################################################
 # ALIASES
 ######################################################
+alias xremote="xcd ${DIR_MOUNT}"
+alias xhome="xcd ${DIR_HOME}"
+
 alias xls="clear && ls -lrtA"
 alias dirSize="du -sh"
 alias compress="tar -czvf"
 
-alias xremote="xcd ${DIR_MOUNT}"
-alias xhome="xcd ${DIR_HOME}"
+# git aliases
+# https://stackoverflow.com/questions/35979642/what-is-git-tag-how-to-create-tags-how-to-checkout-git-remote-tags
+alias fetchTags="git fetch --all --tags --prune"
+alias gpull="git pull && git submodule update --init --recursive"
 
 ######################################################
 # FUNCTIONS
@@ -79,11 +87,21 @@ function extract {
   fi
 }
 
+function gpush()
+{
+  case $# in
+    0) git push origin master
+    ;;
+    1) git push origin $1
+    ;;
+    *) echo "Usage: gpush <repository>"
+    ;;
+  esac
+}
+
 ######################################################
 # DEFAULT CALLS
 ######################################################
 xhome
 
-xdbgEcho "$DIR_MOUNT"
-xdbgEcho "$DIR_HOME"
 
