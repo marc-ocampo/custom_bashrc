@@ -5,10 +5,10 @@
 ######################################################
 
 # Home directory upon opening a shell
-DIR_HOME=/home/${USERNAME}
+DIR_HOME=/home/${USERNAME}/local_proj
 
 # Remote directory used for mounts (VMs)
-DIR_MOUNT=/mnt/hgfs
+DIR_MOUNT=/mnt/hgfs/D
 
 # Enables (1) and disables (0) debug logging
 DBG=1
@@ -23,7 +23,7 @@ alias xhome="cd ${DIR_HOME} && xls"
 # FUNCTIONS
 ######################################################
 function xls() {
-  clear && ls -lrt $1
+  clear && ls -lrtA $1
 }
 
 function xcd() {
@@ -33,7 +33,11 @@ function xcd() {
   xls
 }
 
-function xdbg_echo() {
+function xdirSize() {
+  du -sh $*
+}
+
+function xdbgEcho() {
   if [ $# -ne 0 ]; then
     if [ $DBG -eq 1 ]; then
       echo "[DBG]" $*
@@ -46,6 +50,6 @@ function xdbg_echo() {
 ######################################################
 xhome
 
-xdbg_echo "$DIR_MOUNT"
-xdbg_echo "$DIR_HOME"
+xdbgEcho "$DIR_MOUNT"
+xdbgEcho "$DIR_HOME"
 
