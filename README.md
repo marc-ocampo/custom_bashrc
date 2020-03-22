@@ -1,2 +1,2 @@
 # custom_bashrc
-personal bashrc
+This is a personal bashrc
