@@ -3,20 +3,22 @@
 ######################################################
 # VARIABLES
 ######################################################
-
 # Home directory upon opening a shell
-DIR_HOME=/home/${USERNAME}/local_proj
+DIR_HOME=/home/${USERNAME}/
 
 # Remote directory used for mounts (VMs)
-DIR_MOUNT=/mnt/hgfs/D
+DIR_MOUNT=/mnt/hgfs/
 
 # Enables (1) and disables (0) debug logging
-DBG=1
+DBG=0
 
 ######################################################
 # ALIASES
 ######################################################
 alias xls="clear && ls -lrtA"
+alias dirSize="du -sh"
+alias compress="tar -czvf"
+
 alias xremote="xcd ${DIR_MOUNT}"
 alias xhome="xcd ${DIR_HOME}"
 
@@ -24,14 +26,12 @@ alias xhome="xcd ${DIR_HOME}"
 # FUNCTIONS
 ######################################################
 function xcd() {
-  if [ $# -lt 2 ]; then
+  if [ $# -gt 1 ]; then
+    echo "Usage: xcd <path>"
+  else
     cd $1
+    xls
   fi
-  xls
-}
-
-function xdirSize() {
-  du -sh $*
 }
 
 function xdbgEcho() {
@@ -39,13 +39,6 @@ function xdbgEcho() {
     if [ $DBG -eq 1 ]; then
       echo "[DBG]" $*
     fi
-  fi
-}
-
-function compress {
-  if [ $# -gt 1 ]; then
-    # tar -czvf archive.tar foo bar  # Create archive.tar from files foo and bar
-    tar -czvf $1 ${@:2}
   fi
 }
 
