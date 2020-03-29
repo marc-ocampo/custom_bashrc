@@ -53,7 +53,7 @@ function xecho
   esac
 
   if [ $LOG_LVL -le $1 ]; then
-    echo $print_log_lvl $*
+    echo $print_log_lvl ${@:2}
   fi
 }
 
@@ -137,3 +137,4 @@ function gpush
 # DEFAULT CALLS
 ######################################################
 xhome
+xecho $LL_INF "Welcome" ${USERNAME} "!"
