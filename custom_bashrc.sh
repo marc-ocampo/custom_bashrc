@@ -28,6 +28,7 @@ alias dirSize="du -sh"
 # https://stackoverflow.com/questions/35979642/what-is-git-tag-how-to-create-tags-how-to-checkout-git-remote-tags
 alias fetchTags="git fetch --all --tags --prune"
 alias gpull="git pull && git submodule update --init --recursive"
+alias gsta="git status"
 
 ######################################################
 # FUNCTIONS & VARIABLES
