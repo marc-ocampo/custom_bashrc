@@ -4,13 +4,13 @@
 # USER-CONFIGURED VARIABLES
 ######################################################
 # Home directory upon opening a shell
-DIR_HOME=/home/${USERNAME}/
+DIR_HOME=/home/${USERNAME}/local_proj
 
 # Remote directory used for mounts (VMs)
-DIR_MOUNT=/mnt/hgfs/
+DIR_MOUNT=/mnt/hgfs/D
 
 # Log level (0:INF, 1:ERR)
-LOG_LVL=1
+LOG_LVL=0
 
 # Path for git master branch (if not 'master' as default)
 GMASTER=HEADS:refs/for/master
@@ -139,3 +139,6 @@ function gpush
 ######################################################
 xhome
 xecho $LL_INF "Welcome" ${USERNAME} "!"
+
+# Enables keyboard lights
+xset led 3
